@@ -1,9 +1,7 @@
 package com.example.StudentRecord.mappers;
 
 import com.example.StudentRecord.entities.Teacher;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,4 +13,12 @@ public interface TeacherMapper {
 
     @Select("select * from Teacher where teacherId=#{id}")
     Teacher getTeacherById(@Param("id") Integer id);
+
+    @Insert("insert into Teacher(teacherFirstName,teacherLastName,level,contactnumber) values(#{teacherFirstName},#{teacherLastName},#{level},#{contactNumber})")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()",keyProperty = "teacherId",resultType = Long.class,before = false)
+    void addNewTeacher(Teacher teacher);
 }
+//    String teacherFirstName;
+//    String teacherLastName;
+//    String level;
+//    String contactNumber;

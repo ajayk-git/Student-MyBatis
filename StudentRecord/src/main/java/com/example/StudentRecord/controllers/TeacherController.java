@@ -4,10 +4,7 @@ import com.example.StudentRecord.entities.Teacher;
 import com.example.StudentRecord.exceptions.ResourceNotFoundException;
 import com.example.StudentRecord.mappers.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,10 @@ public class TeacherController {
           throw new ResourceNotFoundException("Teacher Not Exist.");
       else
         return teacher;
+    }
+
+    @PostMapping("/add")
+    public  void addNewTeacher(@RequestBody Teacher teacher){
+        teacherMapper.addNewTeacher(teacher);
     }
 }
