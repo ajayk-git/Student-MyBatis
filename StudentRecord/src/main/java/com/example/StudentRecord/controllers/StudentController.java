@@ -1,6 +1,7 @@
 package com.example.StudentRecord.controllers;
 
 import com.example.StudentRecord.entities.Student;
+import com.example.StudentRecord.exceptions.ResourceNotFoundException;
 import com.example.StudentRecord.mappers.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,11 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public Student getStudentById(@PathVariable(name = "id") Integer id){
-        return studentMapper.getStudentById(id);
+        Student student= studentMapper.getStudentById(id);
+        if (student==null){
+            throw new ResourceNotFoundException("Student Not Exist.");
+        }
+        return student;
     }
 
 
