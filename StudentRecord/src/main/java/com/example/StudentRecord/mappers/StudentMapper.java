@@ -18,4 +18,8 @@ public interface StudentMapper {
     @Insert("insert into Student(studentFirstName,studentLastName,fatherName,city,contactnumber,Standard) values(#{studentFirstName},#{studentLastName},#{fatherName},#{city},#{contactNumber},#{standard})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()",keyProperty = "studentId",resultType = Long.class,before = false)
     void addNewStudent(Student student);
+
+
+    @Delete("delete from Student where studentId=#{id}")
+    void deleteStudentRecord(Integer id);
 }

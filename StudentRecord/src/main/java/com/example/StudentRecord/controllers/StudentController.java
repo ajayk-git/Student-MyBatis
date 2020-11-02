@@ -3,6 +3,7 @@ package com.example.StudentRecord.controllers;
 import com.example.StudentRecord.entities.Student;
 import com.example.StudentRecord.exceptions.ResourceNotFoundException;
 import com.example.StudentRecord.mappers.StudentMapper;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,10 @@ public class StudentController {
         studentMapper.addNewStudent(student);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteStudentRecord(@PathVariable(name = "id") Integer id){
+        studentMapper.deleteStudentRecord(id);
+    }
 
 
 }
