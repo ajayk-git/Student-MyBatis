@@ -17,6 +17,9 @@ public interface TeacherMapper {
     @Insert("insert into Teacher(teacherFirstName,teacherLastName,level,contactnumber) values(#{teacherFirstName},#{teacherLastName},#{level},#{contactNumber})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()",keyProperty = "teacherId",resultType = Long.class,before = false)
     void addNewTeacher(Teacher teacher);
+
+    @Delete("delete from Teacher where teacherId=#{id}")
+    void deleteTeacherRecord(Integer id);
 }
 //    String teacherFirstName;
 //    String teacherLastName;

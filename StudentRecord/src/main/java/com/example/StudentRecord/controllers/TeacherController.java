@@ -33,4 +33,10 @@ public class TeacherController {
     public  void addNewTeacher(@RequestBody Teacher teacher){
         teacherMapper.addNewTeacher(teacher);
     }
+
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteTeacherRecord(@PathVariable(name = "id") Integer id){
+        teacherMapper.deleteTeacherRecord(id);
+    }
 }
